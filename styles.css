@@ -8,123 +8,601 @@
 html{
     scroll-behavior: smooth;
 }
-body{
-    background: rgb(255, 255, 255);
-}
-.nav-bar{
-display: flex;
-align-items: center;
-height: 100px;
-padding: 0px 100px;
-padding-top: 50px;
-}
-.logo{
-    width: 100%;
-    padding-left: 5%;
-    font-size: 30px;
-    font-weight: 700;
-    color: rgb(210, 7, 7);
-}
-.menu-bar{
-    width: 70%;
-    padding-right: 0px;
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-}
-.menu-bar li a{
-    font-size: 20px;
-    font-weight: 550;
-    text-decoration: none;
-    color: black;
-    transition: all 0.3s ease;
-    position: relative;
-}
-.menu-bar li a:hover{
-    color:rgb(210, 7, 7) ;
-    text-decoration: underline;
-    text-underline-offset: 5px;
-    text-underline-position:auto;
-    text-decoration-color:rgb(181, 2, 2)  ;
-}
-.nav-bar-menu{
-    display: none;
-}
-.section2,.section3,.section4,.section6{
-    position: relative;
-}
-.arrows{
-    position: absolute;
-    right: 30px;
-    bottom: 0px;
-}
-.arrows img{
-    width: 20px;
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif; /* Default font, will be overridden for specific elements */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
 }
 
-@media(max-width:1024px){
-.nav-bar{
-    display: none ;
+/* --- UNIVERSAL IMAGE RESPONSIVENESS --- */
+/* This is crucial: ensures all images scale down proportionally and don't overflow */
+img {
+    max-width: 100%; /* Image will not exceed its parent's width */
+    height: auto;    /* Maintains aspect ratio */
+    display: block;  /* Helps with layout and allows margin: auto for centering */
 }
-.nav-bar-menu{
+
+/* Navigation Bar */
+.nav-bar {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
-.menu-bar{
-    width: 300px;
-    padding-right: 0px;
+
+.nav-bar .logo {
+    font-size: 1.8rem; /* Adjusted font size for logo */
+    font-weight: bold;
+    color: #333;
+    font-family: 'Georgia', serif; /* Example: A different font for the logo */
+}
+
+.nav-bar .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-bar .menu-bar {
     list-style: none;
     display: flex;
-    justify-content:space-between;
+    margin: 0;
+    padding: 0;
 }
-.hamburger {
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    position: fixed;
-    right: 20px;
-    top: 15px;
+
+.nav-bar .menu-bar li {
+    margin-left: 2rem;
 }
-.hamburger i{
-    font-size: 35px;
-    padding: 3px;
-    border-radius: 22px;
+
+.nav-bar .menu-bar a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    font-family: 'Verdana', sans-serif; /* Example: A common sans-serif font for menu items */
 }
-.nav-bar-menu .logo{
-    padding-left: 20px;
-    margin-top: 10px;
-    padding-top: 20px;
+
+.nav-bar .menu-bar a:hover {
+    color: #007bff;
 }
-.nav-bar-menu .menu-bar{
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .nav-bar .menu-bar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+    }
+
+    .nav-bar .menu-bar.active {
+        display: flex;
+    }
+
+    .nav-bar .menu-bar li {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+
+    .nav-bar .hamburger {
+        display: block;
+    }
+}
+
+/* Section 1 - Hero Section */
+.section1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center content horizontally */
+    align-items: center;     /* Vertically align items */
+    padding: 4rem 2rem;
+    gap: 3rem; /* Space between image and text */
+    text-align: center; /* Default text alignment for smaller screens */
+    background-color: #e9ecef;
+}
+
+.section-1-1 {
+    display: flex; /* Use flex to center the image if it's the only content in this div */
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Prevent it from shrinking more than necessary */
+}
+
+.section-1-1 img {
+    /* Keeping your fixed size but adding object-fit for perfect circular crop */
+    width: 250px; /* Example fixed size, adjust as needed */
+    height: 250px; /* Example fixed size, adjust as needed */
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover; /* Ensures the image fills the circular area, cropping if necessary */
+    aspect-ratio: 1/1; /* Ensures it's a perfect circle (width/height ratio) */
+    border: 5px solid #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-1-2 {
+    max-width: 600px;
+    flex-grow: 1; /* Allows the text content to grow */
+}
+
+/* Media query for larger screens in Section 1 */
+@media (min-width: 768px) {
+    .section1 {
+        justify-content: center; /* Keep centered or adjust to space-around/between if needed */
+        text-align: left; /* Align text left on larger screens */
+    }
+    .section-1-1 {
+        order: 1; /* Puts image first on larger screens */
+    }
+    .section-1-2 {
+        order: 2; /* Puts text second on larger screens */
+    }
+}
+
+
+.section-1-2-1 {
+    font-size: 1.2rem;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
+
+#name-Sravanthi {
+    font-size: 3rem;
+    color: #007bff;
+    margin: 0.5rem 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#role {
+    font-size: 1.5rem;
+    color: #444;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.section-1-2 p {
+    font-size: 1.1rem;
+    margin: 1.5rem 0;
+    color: #555;
+    font-family: 'Lato', sans-serif;
+}
+
+.buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center; /* Center buttons by default */
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #007bff;
+}
+
+.btn-secondary:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+}
+
+.social-img {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-img img {
+    /* Adjusted size for social icons */
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease;
+}
+
+.social-img img:hover {
+    transform: translateY(-5px);
+}
+
+/* Section 2 - About Me */
+.section2 {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #fdfdfd;
+}
+
+.section21 span {
+    font-size: 1.2rem;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
+
+.section21 h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section22 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center content horizontally */
+    align-items: center;     /* Vertically align items */
+    gap: 3rem;
+}
+
+.section221 {
+    display: flex; /* Helps center the image within its div */
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.section221 img {
+    /* Smaller size for About Me section profile picture */
+    width: 180px; /* Adjusted fixed size, adjust as needed */
+    height: 180px; /* Adjusted fixed size, adjust as needed */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    aspect-ratio: 1/1; /* Ensure perfect circle */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section222 {
+    max-width: 700px;
+    text-align: left;
+    flex-grow: 1; /* Allow the text content to grow */
+}
+
+/* Media query for larger screens in Section 2 (About Me) */
+@media (max-width: 992px) { /* Adjust breakpoint if needed */
+    .section22 {
+        flex-direction: column; /* Stack image and text vertically on smaller screens */
+    }
+    .section221, .section222 {
+        text-align: center; /* Center text and image when stacked */
+    }
+    .section221 img {
+        margin-bottom: 2rem; /* Add space below image when stacked */
+    }
+}
+
+
+.section2221 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center boxes */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.section2221 .box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px; /* Limit box width for better two-column layout on larger screens */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+}
+
+.section2221 .box img {
+    /* Experience/Education icons */
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.8rem;
+}
+
+.section2221 .box span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #007bff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.section2221 .box p {
+    font-size: 0.95rem;
+    color: #555;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+.section22-para {
+    font-size: 1.1rem;
+    color: #555;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Section 3 - Experience */
+.section3 {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #e9ecef;
+}
+
+.section31 span {
+    font-size: 1.2rem;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
+
+.section31 h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section32 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.section32-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px; /* Adjusted max-width for better control */
+}
+
+.section32-box span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #007bff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.section32-box .skills {
+    /* Using grid for skills for even columns */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Adjusted minmax for more flexibility */
+    gap: 1rem;
+    justify-content: center; /* Center grid items */
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-align: left; /* Align skill text left within its item */
+}
+
+.skill-item img {
+    /* Checkmark icons */
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0; /* Prevents icon from shrinking on smaller screens */
+}
+
+.skill-item .skill-text span {
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #444;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Section 4 - Projects */
+.section4 {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #fdfdfd;
+}
+
+.section41 span {
+    font-size: 1.2rem;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
+
+.section41 h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section42 {
+    /* Using grid for projects for a flexible, responsive layout */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax for better project card scaling */
+    gap: 2rem;
+    justify-content: center;
+}
+
+.section42-box1 {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1.5rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
-    position: fixed;
-    align-content: space-around;
-    right: 0;
-    top: 70px;
-    padding: 10px;
-    gap: 10px;
-    margin-right:-700px ;
-    border-radius: 20px;
-    width: 138px;
-    transition: all 0.6s ease;
+    align-items: center;
+    text-align: center;
+}
 
+.section42-box1 img {
+    /* Project images */
+    width: 100%; /* Image fills its container (project box) */
+    max-width: 350px; /* Optional: cap the image width if the grid item gets very large */
+    height: 200px; /* Fixed height for consistency across project cards */
+    object-fit: cover; /* Important: covers the area, cropping if necessary to maintain aspect ratio */
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
 }
-.nav-bar-menu .menu-bar.show{
-    margin-right: 0px;
+
+.section42-box1 .project-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
 }
-.nav-bar-menu .menu-bar li a{
-    background-color: rgb(243, 166, 166);
-    display: block;
+
+.section42-box1 .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-project {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
     border-radius: 5px;
-    font-weight: 600;
-    color: rgb(173, 20, 20);
-    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: 1px solid #007bff;
+    color: #007bff;
+    background-color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.btn-project:hover {
+    background-color: #007bff;
+    color: #fff;
 }
-@media(max-width:767px){
-    .logo{
-        text-wrap: nowrap;
-    }.nav-bar .logo{
-        margin-top: 10px;
-    }
+
+/* Section 5 - Contact */
+.section5 {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #e9ecef;
+}
+
+.section511 span {
+    font-size: 1.2rem;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
+
+.section511 h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section512 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    font-family: 'Lato', sans-serif;
+}
+
+.contact-link:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.contact-link:hover img {
+    filter: brightness(0) invert(1); /* Change icon color on hover */
+}
+
+.contact-link img {
+    /* Contact icons */
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0; /* Prevent icons from shrinking */
+}
+
+/* Section 6 - Footer */
+.section6 {
+    padding: 2rem;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.footer-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* Allow footer links to wrap */
+}
+
+.footer-menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    font-family: 'Verdana', sans-serif;
+}
+
+.footer-menu li a:hover {
+    color: #007bff;
+}
+
+.section6 span {
+    font-family: 'Lato', sans-serif;
 }
